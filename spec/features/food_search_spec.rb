@@ -8,8 +8,13 @@ RSpec.describe 'food search' do
     fill_in :q, with: 'sweet potatoes'
     click_on 'Search'
 
+    food = SearchFacade.new.find_foods('sweet potatoes')
+
     expect(current_path).to eq('/foods')
-    expect(page).to have_content("Total Found: 5")
+    expect(page).to have_content("Total Found: 50")
+    expect(page).to have_content("Description: #{food.description}")
+    expect(page).to have_content("UPC Code: #{food.gtinUpc}")
+    expect(page).to have_content("Ingredients: #{food.ingredients}")
   end
 
 end

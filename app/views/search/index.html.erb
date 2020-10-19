@@ -1,3 +1,8 @@
 <h1>Foods</h1>
 <section class="foods">
   <p>Total Found: <%= @foods.count %></p>
+  <% @foods.each do |food| %>
+  <p>Description: <%= food.description %></p>
+  <p>UPC Code: <%= food.gtinUpc %>
+  <p>Ingredients: <%= food.ingredients %>
+<% end %>
