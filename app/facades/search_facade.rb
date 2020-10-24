@@ -1,8 +1,10 @@
 class SearchFacade
 
-  def find_foods(food)
-    json = FoodService.new.find_foods(food)[:foods].map do |food_data|
-      Food.new(food_data)
+  def self.food_search(term)
+    data = FoodService.search(term)
+
+    @foods = data[:foods].first(10).map do |food_attrs|
+      Food.new(food_attrs)
     end
   end
 
