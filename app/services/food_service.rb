@@ -1,13 +1,12 @@
 class FoodService
 
-  def conn
-    conn = Faraday.new('https://api.nal.usda.gov/fdc/v1')
-  end
-
-  def find_foods(food)
-    response = conn.get("https://api.nal.usda.gov/fdc/v1/foods/search?query=#{food}&api_key=#{ENV['FOOD_API_KEY']}")
-
-    parsed = JSON.parse(response.body, symbolize_names: true)
+  def self.search(term)
+    conn = Faraday.new('https://api.nal.usda.gov')
+    response = conn.get('/fdc/v1/foods/search') do |req|
+      req.params[:query] = term
+      req.params[:api_key] = ENV['FOOD_API_KEY']
+    end
+    JSON.parse(response.body, symbolize_names: true)
   end
 
 end
