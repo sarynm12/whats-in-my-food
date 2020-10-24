@@ -1,8 +1,20 @@
-<h1>Foods</h1>
-<section class="foods">
-  <p>Total Found: <%= @foods.count %></p>
-  <% @foods.each do |food| %>
-  <p>Description: <%= food.description %></p>
-  <p>UPC Code: <%= food.gtinUpc %>
-  <p>Ingredients: <%= food.ingredients %>
+<h1>
+  We found <%= @foods.size %> foods containing <%= @searched_food %>
+</h1>
+
+<% @foods.each do |food| %>
+  <section class="food">
+    <p class="upc">
+      UPC Code: <%= food.gtinUpc %>
+    </p>
+    <p class="description">
+      Description: <%= food.description %>
+    </p>
+    <p class="brand">
+      Brand: <%= food.brand %>
+    </p>
+    <p class="ingredients">
+      Ingredients: <%= food.ingredients %>
+    </p>
+  </section>
 <% end %>
